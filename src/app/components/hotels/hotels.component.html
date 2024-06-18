@@ -17,15 +17,15 @@
         type="search"
         placeholder="Search"
         aria-label="Search"
+        (input)="onSearch($event)"
       />
-      <button class="btn btn-primary" type="submit">Search</button>
     </form>
   </div>
 </nav>
 
 <div class="container cards-main-container">
   <div class="row cards-container mt-3">
-    <ng-container *ngFor="let hotel of hotelsList">
+    <ng-container *ngFor="let hotel of filteredHotelsList">
       <app-card class="col" [hotel]="hotel"></app-card>
     </ng-container>
   </div>

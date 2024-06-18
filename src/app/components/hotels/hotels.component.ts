@@ -12,6 +12,7 @@ import { CityService } from 'src/app/services/city.service';
 export class HotelsComponent implements OnInit {
   hotelsList: Hotel[] | undefined;
   citiesList: City[] | undefined;
+  filteredHotelsList: Hotel[] | undefined;
   selectedCityId: number | undefined;
   selectedCityName: string = '';
   error = null;
@@ -39,6 +40,7 @@ export class HotelsComponent implements OnInit {
     this.apiService.getHotels().subscribe({
       next: (data) => {
         this.hotelsList = data;
+        this.filteredHotelsList = data;
         console.log(data);
       },
       error: (err) => {
@@ -63,12 +65,25 @@ export class HotelsComponent implements OnInit {
 
   displayHotelsByCity(id: number, name: string) {
     this.apiService.getHotelsByCity(id).subscribe({
-      next: (data) => (this.hotelsList = data),
+      next: (data) => {
+        this.hotelsList = data;
+        this.filteredHotelsList = data;
+      },
       error: (err) => (this.error = err.message),
       complete: () => (this.error = null),
     });
     this.cityService.setSelectedCityId(id);
     this.cityService.setSelectedCityName(name);
     this.selectedCityName = name;
+  }
+
+  onSearch(event: any) {
+    const searchWord = event.target.value.toLowerCase();
+    if (this.hotelsList) {
+      this.filteredHotelsList = this.hotelsList.filter((hotel) => {
+        return hotel.name.toLowerCase().includes(searchWord);
+      });
+    }
+    console.log(searchWord);
   }
 }
