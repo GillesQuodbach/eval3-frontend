@@ -1,0 +1,20 @@
+.main-container {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+header {
+  background-color: rgba(154, 162, 173, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-container {
+  background-color: red;
+}
+
+.connexion-btn,
+.main-title {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-light bg-secondary">
+  <div class="container-fluid">
+    <ng-container *ngIf="citiesList">
+      <ng-container *ngFor="let city of citiesList">
+        <a class="navbar-brand">{{ city.name }}</a>
+      </ng-container>
+    </ng-container>
+
+    <form class="d-flex">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="container cards-main-container">
+  <div class="row cards-container mt-3">
+    <ng-container *ngFor="let hotel of hotelsList">
+      <app-card class="col" [hotel]="hotel"></app-card>
+    </ng-container>
+  </div>
+</div>

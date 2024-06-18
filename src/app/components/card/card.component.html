@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem" *ngIf="hotel">
+  <img [src]="imgUrl" class="card-img-top" alt="default" />
+  <div class="card-body">
+    <p class="card-text hotel-name">{{ hotel.name }}</p>
+    <p class="hotel-city">{{ hotel.city.name }}</p>
+    <p class="hotel-price">{{ hotel.price }} €</p>
+    <p class="hotel-stars">{{ hotel.stars }}</p>
+  </div>
+</div>
