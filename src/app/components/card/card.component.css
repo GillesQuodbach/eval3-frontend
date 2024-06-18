@@ -1,2 +1,8 @@
 .card {
 }
+
+.card-first-content,
+.card-second-content {
+  display: flex;
+  justify-content: space-between;
+}

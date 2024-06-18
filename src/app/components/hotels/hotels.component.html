@@ -1,8 +1,13 @@
 <nav class="navbar navbar-light bg-secondary">
   <div class="container-fluid">
     <ng-container *ngIf="citiesList">
+      <a (click)="getAllHotels()" class="navbar-brand city-link">Toutes</a>
       <ng-container *ngFor="let city of citiesList">
-        <a class="navbar-brand">{{ city.name }}</a>
+        <a
+          (click)="displayHotelsByCity(city.id, city.name)"
+          class="navbar-brand city-link"
+          >{{ city.name }}</a
+        >
       </ng-container>
     </ng-container>
 

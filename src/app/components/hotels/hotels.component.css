@@ -1,3 +1,15 @@
+.city-link {
+  cursor: pointer;
+
+  padding: 8px 12px;
+  border-radius: 0.5rem;
+  background-color: rgba(174, 176, 179, 0.8);
+}
+
+.city-link:hover {
+  background-color: rgba(145, 147, 150, 0.8);
+}
+
 app-card {
   margin: 0;
   padding: 0;
