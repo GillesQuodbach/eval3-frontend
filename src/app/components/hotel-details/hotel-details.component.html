@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="container-header">
+    <fa-icon
+      class="arrow-left"
+      [icon]="faArrowLeft"
+      size="2x"
+      (click)="goHome()"
+    ></fa-icon>
+  </div>
+  <div class="details-container" *ngIf="!isAdmin && hotel">
+    <img class="hotel-image" src="../../../assets/default.jpg" alt="" />
+    <div class="form-group mt-3 form-main-container">
+      <div>
+        <div class="form-row1">
+          <div class="form-group mt-3">
+            <p>{{ hotel.name }}</p>
+          </div>
+          <div class="form-group mt-3">
+            <p>
+              <fa-icon [icon]="faLocationArrow"></fa-icon> {{ hotel.city.name }}
+            </p>
+          </div>
+        </div>
+        <div class="form-row2">
+          <div class="form-group mt-3">
+            <p>{{ hotel.disponibility }}</p>
+          </div>
+
+          <div class="form-group mt-3">
+            <p>{{ hotel.stars }} <fa-icon [icon]="faStar"></fa-icon></p>
+          </div>
+        </div>
+        <div class="form-row3">
+          <div class="form-group mt-3">
+            <p>{{ hotel.price }}€</p>
+          </div>
+          <div class="form-group mt-3">
+            <p><fa-icon [icon]="faPhone"></fa-icon> {{ hotel.phone }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="details-container" *ngIf="isAdmin">
+    <img class="hotel-image" [src]="imgUrl" alt="" />
+    <form
+      [formGroup]="myForm"
+      (ngSubmit)="onSubmit(myForm)"
+      class="form-group mt-3 form-main-container"
+    >
+      <input
+        type="file"
+        class="form-control"
+        (change)="onFileSelected($event)"
+      />
+      <div>
+        <div class="bg-primary form-row1">
+          <div class="form-group mt-3">
+            <input formControlName="name" type="text" class="form-control" />
+          </div>
+          <div class="form-group mt-3">
+            <p>{{ hotel.city.name }}</p>
+          </div>
+        </div>
+        <div class="bg-success form-row2">
+          <div class="form-group mt-3">
+            <input
+              formControlName="disponibility"
+              type="number"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mt-3">
+            <input formControlName="stars" type="number" class="form-control" />
+          </div>
+        </div>
+        <div class="bg-danger form-row3">
+          <div class="form-group mt-3">
+            <input formControlName="price" type="number" class="form-control" />
+          </div>
+          <div class="form-group mt-3">
+            <input formControlName="phone" type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>

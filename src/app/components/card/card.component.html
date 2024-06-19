@@ -1,4 +1,9 @@
-<div class="card" style="width: 18rem" *ngIf="hotel">
+<div
+  class="card"
+  style="width: 18rem"
+  *ngIf="hotel"
+  (click)="hotelDetails(hotel)"
+>
   <img [src]="imgUrl" class="card-img-top" alt="default" />
   <div class="card-body">
     <div class="card-first-content">
@@ -12,6 +17,13 @@
         <fa-icon [icon]="faLocationArrow"></fa-icon> {{ hotel.city.name }}
       </p>
       <p class="hotel-price">{{ hotel.price }}€</p>
+    </div>
+    <div class="card-third-content">
+      <fa-icon
+        (click)="deleteHotel(hotel, $event)"
+        class="trash"
+        [icon]="faTrash"
+      ></fa-icon>
     </div>
   </div>
 </div>

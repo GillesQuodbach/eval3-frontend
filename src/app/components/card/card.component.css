@@ -1,8 +1,14 @@
-.card {
+.card-img-top {
+  max-width: 300px;
+  max-height: 150px;
 }
 
 .card-first-content,
 .card-second-content {
   display: flex;
   justify-content: space-between;
+}
+
+.trash {
+  color: red;
 }

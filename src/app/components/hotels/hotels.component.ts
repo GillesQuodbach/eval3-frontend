@@ -86,4 +86,8 @@ export class HotelsComponent implements OnInit {
     }
     console.log(searchWord);
   }
+
+  refreshHotels() {
+    this.getAllHotels();
+  }
 }

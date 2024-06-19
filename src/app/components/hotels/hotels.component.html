@@ -26,7 +26,11 @@
 <div class="container cards-main-container">
   <div class="row cards-container mt-3">
     <ng-container *ngFor="let hotel of filteredHotelsList">
-      <app-card class="col" [hotel]="hotel"></app-card>
+      <app-card
+        class="col"
+        [hotel]="hotel"
+        (hotelDeleted)="refreshHotels()"
+      ></app-card>
     </ng-container>
   </div>
 </div>
