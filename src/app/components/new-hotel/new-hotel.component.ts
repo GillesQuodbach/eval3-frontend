@@ -13,11 +13,11 @@ import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-hotel-details',
-  templateUrl: './hotel-details.component.html',
-  styleUrls: ['./hotel-details.component.css'],
+  selector: 'app-new-hotel',
+  templateUrl: './new-hotel.component.html',
+  styleUrls: ['./new-hotel.component.css'],
 })
-export class HotelDetailsComponent implements OnInit {
+export class NewHotelComponent implements OnInit {
   faArrowLeft = faArrowLeft;
   faStar = faStar;
   faLocationArrow = faLocationArrow;
@@ -32,6 +32,7 @@ export class HotelDetailsComponent implements OnInit {
   selectedFile: File | null = null;
   selectedFileName: string = '';
   error: string = '';
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -52,7 +53,7 @@ export class HotelDetailsComponent implements OnInit {
       disponibility: [this.hotel.disponibility],
       stars: [this.hotel.stars],
       price: [this.hotel.price],
-      phone: [this.hotel.price],
+      phone: [this.hotel.phone],
     });
     this.imgUrl = 'assets/default.jpg';
   }
@@ -65,46 +66,38 @@ export class HotelDetailsComponent implements OnInit {
       error: (err) => (this.error = err),
     });
 
-    let hotelId = this.route.snapshot.params['id'];
-    if (hotelId != 0) {
-      this.apiService.getHotel(hotelId).subscribe({
-        next: (data) => {
-          this.hotel = data;
-          this.imgUrl = this.hotel.img
-            ? `${this.imgEnv}/images/${this.hotel.id}`
-            : 'assets/default.jpg';
-          console.log(this.imgUrl);
-          this.myForm.setValue({
-            name: this.hotel.name,
-            city: this.hotel.city,
-            disponibility: this.hotel.disponibility,
-            stars: this.hotel.stars,
-            price: this.hotel.price,
-            phone: this.hotel.phone,
-          });
-
-          console.log(this.imgUrl);
-        },
-      });
-    } else {
-      this.imgUrl = 'http://localhost:8080/images/default.jpg';
-    }
+    this.myForm.setValue({
+      name: '',
+      city: '',
+      disponibility: '',
+      stars: 0,
+      price: 0,
+      phone: '',
+    });
+    this.imgUrl = 'assets/default.jpg';
   }
 
-  updateHotel(form: FormGroup) {
-    let hotelId = this.route.snapshot.params['id'];
+  onAddHotel(form: FormGroup) {
+    let hotelId = 0;
+
     if (form.valid) {
+      let selectedCityId = +form.value.city;
+      console.log(selectedCityId);
+      const selectedCity = this.cities.find(
+        (city) => city.id === selectedCityId
+      );
+
       if (this.selectedFile == null) {
         this.apiService
           .postHotel({
             id: hotelId,
             name: form.value.name,
-            city: form.value.city,
+            city: selectedCity,
             disponibility: form.value.disponibility,
             stars: form.value.stars,
             price: form.value.price,
             phone: form.value.phone,
-            img: this.imgUrl,
+            img: 'default.jpg',
           })
           .subscribe({
             next: (data) => {
@@ -115,44 +108,36 @@ export class HotelDetailsComponent implements OnInit {
             complete: () => this.router.navigateByUrl('hotels'),
           });
       } else {
-        this.updateHotelWithImg(form);
-      }
-    } else {
-      this.error = 'Veuillez saisir tous les champs';
-    }
-  }
-
-  updateHotelWithImg(form: FormGroup) {
-    const formData = new FormData();
-    let hotelId = this.route.snapshot.params['id'];
-    console.log('hotel id = ' + hotelId);
-    formData.append('file', this.selectedFile as File, this.selectedFile?.name);
-    console.log(this.selectedFile);
-    this.apiService
-      .updateHotelImage(formData, hotelId)
-      .subscribe((response) => {
-        const updatedImageUrl = this.selectedFile?.name;
-        console.log('updatedImageUrl ', updatedImageUrl);
-        console.log(response);
+        console.log(form);
+        const formData = new FormData();
+        formData.append(
+          'file',
+          this.selectedFile as File,
+          this.selectedFile?.name
+        );
         this.apiService
           .postHotel({
             id: hotelId,
             name: form.value.name,
-            city: form.value.city,
+            city: selectedCity,
             disponibility: form.value.disponibility,
             stars: form.value.stars,
             price: form.value.price,
             phone: form.value.phone,
-            img: updatedImageUrl,
+            img: this.selectedFileName,
           })
           .subscribe({
             next: (data) => {
-              console.log(data);
+              console.log('formData', data);
+              // this.refreshImageUrl();
             },
             error: (err) => (this.error = err.message),
             complete: () => this.router.navigateByUrl('hotels'),
           });
-      });
+      }
+    } else {
+      this.error = 'Veuillez saisir tous les champs';
+    }
   }
 
   goHome() {
@@ -160,15 +145,13 @@ export class HotelDetailsComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    console.log(form.value);
-    this.updateHotel(form);
+    this.onAddHotel(form);
+    console.log('sended form', form);
   }
 
   onFileSelected(event: any) {
     const input = event.target as HTMLInputElement;
-    this.selectedFile = event.target.files[0] as File;
-    if (input.files) {
-      this.selectedFileName = input.files[0].name;
-    }
+    this.selectedFile = input.files ? input.files[0] : null;
+    this.selectedFileName = this.selectedFile ? this.selectedFile.name : '';
   }
 }

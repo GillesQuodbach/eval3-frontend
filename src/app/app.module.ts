@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
+import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
     CardComponent,
     HotelsComponent,
     HotelDetailsComponent,
+    NewHotelComponent,
   ],
   imports: [
     BrowserModule,
