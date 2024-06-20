@@ -54,16 +54,21 @@
         (change)="onFileSelected($event)"
       />
       <div>
-        <div class="bg-primary form-row1">
+        <div class="form-row1">
           <div class="form-group mt-3">
+            <label for="name">Nom:</label>
             <input formControlName="name" type="text" class="form-control" />
           </div>
           <div class="form-group mt-3">
-            <p>{{ hotel.city.name }}</p>
+            <p class="city-name">
+              <fa-icon class="card-star" [icon]="faLocationArrow"></fa-icon>
+              {{ hotel.city.name }}
+            </p>
           </div>
         </div>
-        <div class="bg-success form-row2">
+        <div class="form-row2">
           <div class="form-group mt-3">
+            <label for="disponibility">Disponibilité:</label>
             <input
               formControlName="disponibility"
               type="number"
@@ -71,19 +76,22 @@
             />
           </div>
           <div class="form-group mt-3">
+            <label for="stars">Etoiles:</label>
             <input formControlName="stars" type="number" class="form-control" />
           </div>
         </div>
-        <div class="bg-danger form-row3">
+        <div class="form-row3">
           <div class="form-group mt-3">
+            <label for="price">Prix:</label>
             <input formControlName="price" type="number" class="form-control" />
           </div>
           <div class="form-group mt-3">
+            <label for="phone">Phone:</label>
             <input formControlName="phone" type="text" class="form-control" />
           </div>
         </div>
       </div>
-      <button type="submit">Update</button>
+      <button type="submit" class="mt-3">Update</button>
     </form>
   </div>
 </div>

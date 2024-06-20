@@ -1,3 +1,8 @@
+.card {
+  background-color: rgba(162, 220, 215, 0.7);
+  box-shadow: 5px 5px 5px black;
+}
+
 .card-img-top {
   max-width: 300px;
   max-height: 150px;
@@ -11,4 +16,18 @@
 
 .trash {
   color: red;
+}
+
+.hotel-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.hotel-city,
+.hotel-price,
+.hotel-stars {
+  font-weight: 500;
+}
+
+.card-star {
+  color: gold;
 }

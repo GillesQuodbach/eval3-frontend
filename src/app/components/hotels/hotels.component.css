@@ -3,11 +3,11 @@
 
   padding: 8px 12px;
   border-radius: 0.5rem;
-  background-color: rgba(174, 176, 179, 0.8);
+  background-color: rgb(162, 220, 215);
 }
 
 .city-link:hover {
-  background-color: rgba(145, 147, 150, 0.8);
+  background-color: rgba(162, 220, 215, 0.5);
 }
 
 app-card {
@@ -21,11 +21,15 @@ app-card {
 }
 
 .cards-container {
-  background-color: rgba(154, 162, 173, 0.8);
+  background-color: #3474d4;
   display: flex;
   justify-content: space-between;
   row-gap: 2rem;
   padding: 20px;
   border-radius: 1rem;
   margin-bottom: 2rem;
+}
+
+.cities-btn-container {
+  background-color: #17396d;
 }

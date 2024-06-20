@@ -102,7 +102,6 @@ export class NewHotelComponent implements OnInit {
           .subscribe({
             next: (data) => {
               console.log('formData', data);
-              // this.refreshImageUrl();
             },
             error: (err) => (this.error = err.message),
             complete: () => this.router.navigateByUrl('hotels'),
