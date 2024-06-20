@@ -9,38 +9,47 @@
   </div>
   <div class="details-container" *ngIf="!isAdmin && hotel">
     <img class="hotel-image" src="../../../assets/default.jpg" alt="" />
-    <div class="form-group mt-3 form-main-container">
+    <div class="form-group mt-3 user-form-main-container">
       <div>
         <div class="form-row1">
           <div class="form-group mt-3">
-            <p>{{ hotel.name }}</p>
+            <p class="user-hotel-name">{{ hotel.name }}</p>
           </div>
           <div class="form-group mt-3">
-            <p>
+            <p class="user-hotel-city">
               <fa-icon [icon]="faLocationArrow"></fa-icon> {{ hotel.city.name }}
             </p>
           </div>
         </div>
         <div class="form-row2">
           <div class="form-group mt-3">
-            <p>{{ hotel.disponibility }}</p>
+            <p class="user-hotel-disponibility">
+              <fa-icon class="bed-icon" [icon]="faBed"></fa-icon> :
+              {{ hotel.disponibility }}
+            </p>
           </div>
 
           <div class="form-group mt-3">
-            <p>{{ hotel.stars }} <fa-icon [icon]="faStar"></fa-icon></p>
+            <p class="user-hotel-stars">
+              {{ hotel.stars }}
+              <fa-icon class="user-hotel-stars-icon" [icon]="faStar"></fa-icon>
+            </p>
           </div>
         </div>
         <div class="form-row3">
           <div class="form-group mt-3">
-            <p>{{ hotel.price }}€</p>
+            <p class="user-hotel-price">{{ hotel.price }}€ /week</p>
           </div>
           <div class="form-group mt-3">
-            <p><fa-icon [icon]="faPhone"></fa-icon> {{ hotel.phone }}</p>
+            <p class="user-hotel-phone">
+              <fa-icon [icon]="faPhone"></fa-icon> {{ hotel.phone }}
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- ! DETAILS ADMIN -->
   <div class="details-container" *ngIf="isAdmin">
     <img class="hotel-image" [src]="imgUrl" alt="" />
     <form

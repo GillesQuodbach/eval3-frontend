@@ -5,6 +5,7 @@ import {
   faStar,
   faLocationArrow,
   faPhone,
+  faBed,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Hotel } from 'src/app/models/hotel.model';
@@ -22,6 +23,7 @@ export class HotelDetailsComponent implements OnInit {
   faStar = faStar;
   faLocationArrow = faLocationArrow;
   faPhone = faPhone;
+  faBed = faBed;
   isAdmin: boolean;
   isFormValid: boolean = false;
   myForm: FormGroup;
@@ -44,7 +46,7 @@ export class HotelDetailsComponent implements OnInit {
     this.cities = [];
     this.hotel.city = defaultCity;
     this.imgEnv = environment.host;
-    this.isAdmin = true;
+    this.isAdmin = false;
 
     this.myForm = this.formBuilder.group({
       name: [this.hotel.name],

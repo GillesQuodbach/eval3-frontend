@@ -14,7 +14,7 @@
 
 .details-container {
   width: 40%;
-  height: 650px;
+  height: fit-content;
   padding: 2rem;
   background-color: rgb(52, 116, 212);
   margin-bottom: 2rem;
@@ -34,6 +34,15 @@
   width: 100%;
 }
 
+.user-form-main-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: rgba(162, 220, 215, 0.7);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
 .form-row1,
 .form-row2,
 .form-row3 {
@@ -46,4 +55,18 @@
 label,
 .city-name {
   font-weight: 500;
+}
+
+.user-hotel-name,
+.user-hotel-city,
+.user-hotel-disponibility,
+.user-hotel-price,
+.user-hotel-phone,
+.user-hotel-stars {
+  font-weight: 500;
+  color: #000;
+}
+
+.user-hotel-stars-icon {
+  color: gold;
 }
