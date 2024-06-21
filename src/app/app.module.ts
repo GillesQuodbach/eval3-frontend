@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
+import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
     HotelsComponent,
     HotelDetailsComponent,
     NewHotelComponent,
+    LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

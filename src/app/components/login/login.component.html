@@ -1,0 +1,59 @@
+<div class="container">
+  <fa-icon
+    class="arrow-left"
+    [icon]="faArrowLeft"
+    size="2x"
+    (click)="goHome()"
+  ></fa-icon>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mt-5">Connexion</h2>
+
+      <form
+        [formGroup]="myForm"
+        (ngSubmit)="onLogin(myForm)"
+        *ngIf="!connected; else welcome"
+      >
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            formControlName="username"
+            placeholder="Entrez votre nom d'utilisateur"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            placeholder="Entrez votre mot de passe"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100" *ngIf="!connected">
+          Log in
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          *ngIf="connected"
+          (click)="disconnect()"
+        >
+          Log out
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<ng-template #welcome>
+  <label style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px"
+    >login : {{ this.authService.UsernameToken() }}</label
+  >
+  <div>
+    <a class="btn btn-primary" (click)="disconnect()"> Deconnexion </a>
+  </div>
+</ng-template>

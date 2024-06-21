@@ -2,6 +2,7 @@ import { ApiService } from './../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { City } from 'src/app/models/city.model';
 import { Hotel } from 'src/app/models/hotel.model';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CityService } from 'src/app/services/city.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class HotelsComponent implements OnInit {
   selectedCityName: string = '';
   error = null;
   imgUrl: string = '';
-
+  isAdmin: boolean = false;
   constructor(
     private apiService: ApiService,
     private cityService: CityService

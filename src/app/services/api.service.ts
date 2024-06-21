@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { City } from '../models/city.model';
 import { Hotel } from '../models/hotel.model';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +44,21 @@ export class ApiService {
     return this.http.post<any>(
       `${environment.host}/images/${hotelId}`,
       formData
+    );
+  }
+
+  public getToken(username: string, password: string): Observable<any> {
+    let formData: FormData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    return this.http.post<any>(environment.host + '/login', formData, {
+      observe: 'response',
+    });
+  }
+
+  public getUserByUsername(username: string) {
+    return this.http.get<User[]>(
+      environment.host + '/users?username=' + username
     );
   }
 }

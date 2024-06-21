@@ -1,10 +1,22 @@
 <div class="main-container">
   <header class="container-fluid">
     <h1 class="main-title">Super-Hotel.fr</h1>
-    <!-- <button class="btn btn-primary header-btn" type="submit">Connexion</button> -->
-    <button class="btn btn-primary header-btn" (click)="addNewHotel()">
-      New Hotel
-    </button>
+    <div>
+      <button
+        class="btn btn-primary header-btn"
+        type="submit"
+        (click)="login()"
+      >
+        Connexion
+      </button>
+      <button
+        *ngIf="isAdmin"
+        class="btn btn-primary header-btn"
+        (click)="addNewHotel()"
+      >
+        New Hotel
+      </button>
+    </div>
   </header>
 
   <router-outlet class="content-container"></router-outlet>

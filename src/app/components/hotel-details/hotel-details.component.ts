@@ -12,6 +12,7 @@ import { Hotel } from 'src/app/models/hotel.model';
 import { City } from 'src/app/models/city.model';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 
 @Component({
   selector: 'app-hotel-details',
@@ -24,7 +25,7 @@ export class HotelDetailsComponent implements OnInit {
   faLocationArrow = faLocationArrow;
   faPhone = faPhone;
   faBed = faBed;
-  isAdmin: boolean;
+  isAdmin: boolean = false;
   isFormValid: boolean = false;
   myForm: FormGroup;
   hotel: Hotel;
@@ -39,14 +40,14 @@ export class HotelDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authService: AuthenticateService
   ) {
     const defaultCity = new City(0, '');
     this.hotel = new Hotel(0, 'test', '', 0, 0, 0, '', defaultCity);
     this.cities = [];
     this.hotel.city = defaultCity;
     this.imgEnv = environment.host;
-    this.isAdmin = false;
 
     this.myForm = this.formBuilder.group({
       name: [this.hotel.name],
@@ -60,6 +61,8 @@ export class HotelDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdminToken();
+
     this.apiService.getCities().subscribe({
       next: (data) => {
         this.cities = data;
